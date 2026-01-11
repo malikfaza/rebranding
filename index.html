@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rebranding Tool - Mafaza Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-cream: #FFFAF0;
+            --text-brown: #5D4037;
+            --accent-brown: #8B4513;
+            --accent-light: #D2B48C;
+            --border-color: #E6D2B5;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            color: var(--text-brown);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .font-serif {
+            font-family: 'Lora', serif;
+        }
+
+        .input-field {
+            background-color: white;
+            border: 1px solid var(--border-color);
+            color: var(--text-brown);
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            width: 100%;
+            transition: all 0.2s;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--accent-brown);
+            box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+        }
+
+        .btn-primary {
+            background-color: var(--accent-brown);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: #6F370F;
+        }
+
+        .btn-secondary {
+            background-color: white;
+            border: 1px solid var(--border-color);
+            color: var(--accent-brown);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--bg-cream);
+            border-color: var(--accent-brown);
+        }
+
+        /* Scrollbar kustom untuk area pratinjau */
+        .preview-area::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        .preview-area::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .preview-area::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
+        }
+
+        .preview-area::-webkit-scrollbar-thumb:hover {
+            background: #999;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen pt-24 pb-12 px-4 md:px-8">
+
+    <!-- Navbar Melayang -->
+    <nav
+        class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md shadow-sm z-50 border-b border-[var(--border-color)] px-6 py-4 flex justify-between items-center transition-all duration-300">
+        <div class="max-w-7xl mx-auto w-full flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold font-serif text-[var(--accent-brown)] flex items-center gap-2">
+                <i data-lucide="paint-brush" class="w-6 h-6"></i>
+                Rebranding by malikfaza
+            </h1>
+            <a href="https://lynk.id/malikfaza" target="_blank"
+                class="text-sm font-semibold text-[var(--accent-brown)] hover:text-[#6F370F] transition-colors flex items-center gap-1">
+                <i data-lucide="link" class="w-4 h-4"></i>
+                lynk.id/malikfaza
+            </a>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+        <!-- Sidebar / Input Section -->
+        <div class="lg:col-span-4 space-y-6">
+
+            <!-- 1. Upload / Paste Section -->
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-[var(--border-color)]">
+                <h2 class="text-base font-bold mb-3 flex items-center text-[var(--accent-brown)]">
+                    <span
+                        class="w-5 h-5 rounded-full bg-[var(--accent-light)] text-white flex items-center justify-center text-xs mr-2">1</span>
+                    Sediakan HTML
+                </h2>
+
+                <!-- Tabs -->
+                <div class="mb-4 flex space-x-4 border-b border-[var(--border-color)]">
+                    <button id="tab-upload"
+                        class="pb-2 border-b-2 border-[var(--accent-brown)] font-semibold text-[var(--accent-brown)] transition-colors text-sm">Unggah
+                        File</button>
+                    <button id="tab-paste"
+                        class="pb-2 border-b-2 border-transparent text-gray-400 hover:text-[var(--accent-brown)] transition-colors text-sm">Tempel
+                        Kode</button>
+                </div>
+
+                <!-- View: Upload -->
+                <div id="view-upload" class="block">
+                    <div id="drop-zone"
+                        class="border-2 border-dashed border-[var(--border-color)] rounded-xl p-6 text-center cursor-pointer hover:bg-[var(--bg-cream)] transition-colors relative group">
+                        <input type="file" id="file-upload"
+                            class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" accept=".html">
+                        <div id="file-info" class="space-y-2 pointer-events-none">
+                            <div
+                                class="bg-[var(--bg-cream)] w-10 h-10 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                                <i data-lucide="upload-cloud" class="w-5 h-5 text-[var(--accent-brown)]"></i>
+                            </div>
+                            <p class="font-medium text-[var(--accent-brown)] text-sm">Klik untuk unggah file HTML</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- View: Paste -->
+                <div id="view-paste" class="hidden">
+                    <textarea id="html-paste" rows="5"
+                        class="w-full p-3 text-xs font-mono border border-[var(--border-color)] rounded-xl focus:outline-none focus:border-[var(--accent-brown)] bg-gray-50 mb-3 resize-none"
+                        placeholder="Tempel kode HTML Anda di sini..."></textarea>
+                    <button id="btn-process-paste"
+                        class="btn-secondary w-full text-xs py-2 flex items-center justify-center gap-2">
+                        <i data-lucide="play" class="w-3 h-3"></i> Gunakan Kode Ini
+                    </button>
+                </div>
+            </div>
+
+            <!-- 2. Customization Section -->
+            <div
+                class="bg-white p-5 rounded-2xl shadow-sm border border-[var(--border-color)] max-h-[500px] overflow-y-auto">
+                <h2 class="text-base font-bold mb-3 flex items-center text-[var(--accent-brown)]">
+                    <span
+                        class="w-5 h-5 rounded-full bg-[var(--accent-light)] text-white flex items-center justify-center text-xs mr-2">2</span>
+                    Kustomisasi
+                </h2>
+
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-semibold mb-1 text-gray-600">Nama Aplikasi</label>
+                        <input type="text" id="app-name" value="Mafaza Pro" class="input-field text-sm"
+                            placeholder="Mafaza Pro">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold mb-1 text-gray-600">Slogan</label>
+                        <input type="text" id="app-slogan" value="Kreativitas tanpa batas" class="input-field text-sm"
+                            placeholder="Kreativitas tanpa batas">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold mb-1 text-gray-600">URL Logo</label>
+                        <input type="text" id="logo-url" value="" class="input-field text-sm" placeholder="https://...">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold mb-1 text-gray-600">Footer Brand</label>
+                        <input type="text" id="brand-name" value="malikfaza" class="input-field text-sm"
+                            placeholder="malikfaza">
+                    </div>
+
+                    <div class="border-t border-[var(--border-color)] pt-3">
+                        <label class="block text-xs font-bold mb-2 text-[var(--accent-brown)]">Warna Sidebar</label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="flex items-center gap-2 bg-gray-50 p-1 rounded border border-gray-200">
+                                <input type="color" id="sidebar-start" value="#0e7490"
+                                    class="h-6 w-6 border-none rounded cursor-pointer">
+                                <input type="text" id="sidebar-start-hex" value="#0e7490"
+                                    class="bg-transparent text-xs w-full focus:outline-none font-mono">
+                            </div>
+                            <div class="flex items-center gap-2 bg-gray-50 p-1 rounded border border-gray-200">
+                                <input type="color" id="sidebar-end" value="#1e3a8a"
+                                    class="h-6 w-6 border-none rounded cursor-pointer">
+                                <input type="text" id="sidebar-end-hex" value="#1e3a8a"
+                                    class="bg-transparent text-xs w-full focus:outline-none font-mono">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-[var(--border-color)] pt-3">
+                        <label class="block text-xs font-bold mb-2 text-[var(--accent-brown)]">Warna Logo</label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="flex items-center gap-2 bg-gray-50 p-1 rounded border border-gray-200">
+                                <input type="color" id="logo-start" value="#0891b2"
+                                    class="h-6 w-6 border-none rounded cursor-pointer">
+                                <input type="text" id="logo-start-hex" value="#0891b2"
+                                    class="bg-transparent text-xs w-full focus:outline-none font-mono">
+                            </div>
+                            <div class="flex items-center gap-2 bg-gray-50 p-1 rounded border border-gray-200">
+                                <input type="color" id="logo-end" value="#2563eb"
+                                    class="h-6 w-6 border-none rounded cursor-pointer">
+                                <input type="text" id="logo-end-hex" value="#2563eb"
+                                    class="bg-transparent text-xs w-full focus:outline-none font-mono">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="grid grid-cols-1 gap-3">
+                <button id="btn-copy-code" class="btn-secondary w-full flex items-center justify-center gap-2 text-sm">
+                    <i data-lucide="code" class="w-4 h-4"></i> Salin Kode HTML
+                </button>
+                <button id="btn-copy-prompt"
+                    class="btn-primary w-full flex items-center justify-center gap-2 text-sm shadow-md shadow-[var(--accent-brown)]/20">
+                    <i data-lucide="message-square-plus" class="w-4 h-4"></i> Salin Prompt
+                </button>
+                <button id="btn-reload"
+                    class="btn-secondary w-full flex items-center justify-center gap-2 text-sm text-red-600 hover:bg-red-50 hover:border-red-200 transition-colors">
+                    <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset / Muat Ulang Asli
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Preview Section -->
+        <div class="lg:col-span-8 h-[calc(100vh-8rem)] sticky top-24">
+            <div
+                class="bg-white rounded-2xl shadow-xl border border-[var(--border-color)] overflow-hidden flex flex-col h-full">
+
+                <!-- Toolbar Pratinjau -->
+                <div
+                    class="p-3 border-b border-[var(--border-color)] bg-[var(--bg-cream)] flex justify-between items-center z-20">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-red-400"></span>
+                        <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+                        <span class="w-3 h-3 rounded-full bg-green-400"></span>
+                    </div>
+
+                    <!-- Toggle Device Buttons -->
+                    <div class="flex bg-white rounded-lg p-1 border border-[var(--border-color)] shadow-sm">
+                        <button onclick="setPreviewMode('desktop')" id="btn-desktop"
+                            class="p-2 rounded md:px-3 flex items-center gap-2 text-xs font-bold transition-all bg-[var(--accent-brown)] text-white">
+                            <i data-lucide="monitor" class="w-4 h-4"></i>
+                            <span class="hidden md:inline">Desktop</span>
+                        </button>
+                        <button onclick="setPreviewMode('mobile')" id="btn-mobile"
+                            class="p-2 rounded md:px-3 flex items-center gap-2 text-xs font-bold text-gray-500 hover:bg-gray-100 transition-all">
+                            <i data-lucide="smartphone" class="w-4 h-4"></i>
+                            <span class="hidden md:inline">Mobile</span>
+                        </button>
+                    </div>
+
+                    <div class="w-16"></div> <!-- Spacer untuk keseimbangan -->
+                </div>
+
+                <!-- Area Frame Pratinjau -->
+                <div class="flex-grow bg-gray-100 relative overflow-hidden preview-area flex items-center justify-center transition-colors duration-300"
+                    id="preview-bg">
+
+                    <!-- Device Wrapper -->
+                    <div id="device-frame"
+                        class="w-full h-full bg-white border-0 shadow-none transition-all duration-500 ease-in-out relative">
+                        <iframe id="preview-frame" class="w-full h-full border-0 rounded-none"
+                            sandbox="allow-scripts allow-modals allow-same-origin allow-forms"></iframe>
+
+                        <!-- Camera / Notch (Updated for punch hole) -->
+                        <div id="notch"
+                            class="absolute top-4 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-black rounded-full opacity-0 transition-opacity duration-300 pointer-events-none z-10 border border-gray-800 shadow-inner">
+                        </div>
+                    </div>
+
+                    <!-- Empty State -->
+                    <div id="empty-state"
+                        class="absolute inset-0 flex flex-col items-center justify-center text-gray-400 p-8 text-center bg-gray-50 z-0">
+                        <i data-lucide="layout" class="w-16 h-16 mb-4 opacity-20"></i>
+                        <p class="font-bold text-gray-500">Belum ada file.</p>
+                        <p class="text-sm">Unggah file HTML di panel kiri.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer Page -->
+    <footer class="mt-12 text-center border-t border-[var(--border-color)] pt-8">
+        <p class="text-sm text-[var(--text-brown)] opacity-70 mb-2">Developed with ❤️</p>
+        <a href="https://lynk.id/malikfaza" target="_blank"
+            class="inline-flex items-center gap-2 text-[var(--accent-brown)] font-bold hover:underline transition-all">
+            <img src="https://www.google.com/s2/favicons?domain=lynk.id" alt="lynk.id" class="w-4 h-4 opacity-70">
+            lynk.id/malikfaza
+        </a>
+    </footer>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // State
+        let originalHtml = "";
+        let fileName = "rebranded.html";
+        let currentMode = 'desktop';
+
+        // Elements
+        const dropZone = document.getElementById('drop-zone');
+        const fileUpload = document.getElementById('file-upload');
+        const fileInfo = document.getElementById('file-info');
+        const previewFrame = document.getElementById('preview-frame');
+        const emptyState = document.getElementById('empty-state');
+        const deviceFrame = document.getElementById('device-frame');
+        const notch = document.getElementById('notch');
+        const btnDesktop = document.getElementById('btn-desktop');
+        const btnMobile = document.getElementById('btn-mobile');
+
+        // Tab Elements
+        const tabUpload = document.getElementById('tab-upload');
+        const tabPaste = document.getElementById('tab-paste');
+        const viewUpload = document.getElementById('view-upload');
+        const viewPaste = document.getElementById('view-paste');
+        const htmlPaste = document.getElementById('html-paste');
+        const btnProcessPaste = document.getElementById('btn-process-paste');
+
+
+        // Input Elements
+        const inputs = {
+            appName: document.getElementById('app-name'),
+            slogan: document.getElementById('app-slogan'),
+            logoUrl: document.getElementById('logo-url'),
+            brandName: document.getElementById('brand-name'),
+            sidebarStart: document.getElementById('sidebar-start'),
+            sidebarEnd: document.getElementById('sidebar-end'),
+            logoStart: document.getElementById('logo-start'),
+            logoEnd: document.getElementById('logo-end'),
+            // Text inputs for hex Sync
+            sidebarStartHex: document.getElementById('sidebar-start-hex'),
+            sidebarEndHex: document.getElementById('sidebar-end-hex'),
+            logoStartHex: document.getElementById('logo-start-hex'),
+            logoEndHex: document.getElementById('logo-end-hex'),
+        };
+
+        // --- Logic Mode Pratinjau (Desktop/Mobile) ---
+        window.setPreviewMode = function (mode) {
+            currentMode = mode;
+
+            // Reset Styles
+            btnDesktop.className = "p-2 rounded md:px-3 flex items-center gap-2 text-xs font-bold transition-all text-gray-500 hover:bg-gray-100";
+            btnMobile.className = "p-2 rounded md:px-3 flex items-center gap-2 text-xs font-bold transition-all text-gray-500 hover:bg-gray-100";
+
+            if (mode === 'mobile') {
+                // Style Active Button
+                btnMobile.className = "p-2 rounded md:px-3 flex items-center gap-2 text-xs font-bold transition-all bg-[var(--accent-brown)] text-white shadow-md";
+
+                // Style Mobile Frame (Punch-hole style)
+                deviceFrame.className = "relative w-[340px] h-[680px] bg-white border-[10px] border-gray-800 rounded-[2.5rem] shadow-2xl overflow-hidden ring-4 ring-gray-300 transition-all duration-500 ease-in-out my-auto";
+
+                // Show Punch-hole Camera
+                notch.className = "absolute top-3 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-black rounded-full opacity-100 transition-opacity duration-300 pointer-events-none z-10 border border-gray-700";
+
+                // Add scroll to parent if needed
+                document.getElementById('preview-bg').classList.add('overflow-y-auto');
+
+            } else {
+                // Style Active Button
+                btnDesktop.className = "p-2 rounded md:px-3 flex items-center gap-2 text-xs font-bold transition-all bg-[var(--accent-brown)] text-white shadow-md";
+
+                // Style Desktop Frame (No Frame / Full Width)
+                deviceFrame.className = "w-full h-full bg-white border-0 shadow-none rounded-none transition-all duration-500 ease-in-out";
+
+                // Hide Camera
+                notch.className = "absolute top-4 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-black rounded-full opacity-0 transition-opacity duration-300 pointer-events-none z-10";
+
+                document.getElementById('preview-bg').classList.remove('overflow-y-auto');
+            }
+        }
+
+        // --- TAB LOGIC (Upload vs Paste) ---
+        tabUpload.addEventListener('click', () => switchTab('upload'));
+        tabPaste.addEventListener('click', () => switchTab('paste'));
+
+        function switchTab(mode) {
+            if (mode === 'upload') {
+                tabUpload.className = "pb-2 border-b-2 border-[var(--accent-brown)] font-semibold text-[var(--accent-brown)] transition-colors text-sm";
+                tabPaste.className = "pb-2 border-b-2 border-transparent text-gray-400 hover:text-[var(--accent-brown)] transition-colors text-sm";
+                viewUpload.classList.remove('hidden');
+                viewPaste.classList.add('hidden');
+            } else {
+                tabPaste.className = "pb-2 border-b-2 border-[var(--accent-brown)] font-semibold text-[var(--accent-brown)] transition-colors text-sm";
+                tabUpload.className = "pb-2 border-b-2 border-transparent text-gray-400 hover:text-[var(--accent-brown)] transition-colors text-sm";
+                viewPaste.classList.remove('hidden');
+                viewUpload.classList.add('hidden');
+            }
+        }
+
+        // --- PROCESS PASTE LOGIC ---
+        btnProcessPaste.addEventListener('click', () => {
+            const code = htmlPaste.value.trim();
+            if (!code) {
+                alert("Silakan tempel kode HTML terlebih dahulu.");
+                return;
+            }
+            originalHtml = code;
+            fileName = "rebranded_pasted_code.html";
+            emptyState.classList.add('hidden');
+            updatePreview();
+
+            // Visual feedback
+            const originalText = btnProcessPaste.innerHTML;
+            btnProcessPaste.innerHTML = `<i data-lucide="check" class="w-3 h-3"></i> Kode Terpasang!`;
+            lucide.createIcons();
+            setTimeout(() => {
+                btnProcessPaste.innerHTML = originalText;
+                lucide.createIcons();
+            }, 2000);
+        });
+
+
+        // Sync Color Inputs
+        function setupColorSync(colorInput, textInput) {
+            colorInput.addEventListener('input', () => {
+                textInput.value = colorInput.value;
+                updatePreview();
+            });
+            textInput.addEventListener('input', () => {
+                if (/^#[0-9A-F]{6}$/i.test(textInput.value)) {
+                    colorInput.value = textInput.value;
+                    updatePreview();
+                }
+            });
+        }
+
+        setupColorSync(inputs.sidebarStart, inputs.sidebarStartHex);
+        setupColorSync(inputs.sidebarEnd, inputs.sidebarEndHex);
+        setupColorSync(inputs.logoStart, inputs.logoStartHex);
+        setupColorSync(inputs.logoEnd, inputs.logoEndHex);
+
+
+        // Event Listeners for File Upload
+        fileUpload.addEventListener('change', handleFileSelect);
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('bg-[var(--bg-cream)]', 'border-[var(--accent-brown)]');
+        });
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('bg-[var(--bg-cream)]', 'border-[var(--accent-brown)]');
+        });
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('bg-[var(--bg-cream)]', 'border-[var(--accent-brown)]');
+            if (e.dataTransfer.files.length) {
+                fileUpload.files = e.dataTransfer.files;
+                handleFileSelect();
+            }
+        });
+
+        // Event Listeners for Inputs (Debounced)
+        Object.values(inputs).forEach(input => {
+            input.addEventListener('input', debounce(updatePreview, 300));
+        });
+
+        document.getElementById('btn-copy-prompt').addEventListener('click', copyPrompt);
+        document.getElementById('btn-copy-code').addEventListener('click', copyCode);
+        document.getElementById('btn-reload').addEventListener('click', reloadOriginal);
+
+        // Functions
+        function handleFileSelect() {
+            const file = fileUpload.files[0];
+            if (!file) return;
+
+            fileName = "rebranded_" + file.name;
+
+            // Update UI
+            fileInfo.innerHTML = `
+                <div class="w-10 h-10 rounded-full flex items-center justify-center mx-auto bg-green-100 mb-2">
+                     <i data-lucide="check" class="w-5 h-5 text-green-600"></i>
+                </div>
+                <p class="font-bold text-[var(--accent-brown)] text-sm truncate px-2">${file.name}</p>
+                <p class="text-xs text-gray-500">File siap</p>
+            `;
+            lucide.createIcons();
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                originalHtml = e.target.result;
+                emptyState.classList.add('hidden');
+                updatePreview();
+            };
+            reader.readAsText(file);
+        }
+
+        function reloadOriginal() {
+            if (!originalHtml) {
+                alert("Belum ada file yang diunggah.");
+                return;
+            }
+
+            // Reset Inputs to default
+            inputs.appName.value = "Mafaza Pro";
+            inputs.slogan.value = "Kreativitas tanpa batas";
+            inputs.logoUrl.value = "";
+            inputs.brandName.value = "malikfaza";
+
+            inputs.sidebarStart.value = "#0e7490";
+            inputs.sidebarStartHex.value = "#0e7490";
+            inputs.sidebarEnd.value = "#1e3a8a";
+            inputs.sidebarEndHex.value = "#1e3a8a";
+
+            inputs.logoStart.value = "#0891b2";
+            inputs.logoStartHex.value = "#0891b2";
+            inputs.logoEnd.value = "#2563eb";
+            inputs.logoEndHex.value = "#2563eb";
+
+            // Render raw original HTML
+            previewFrame.srcdoc = originalHtml;
+        }
+
+        function updatePreview() {
+            if (!originalHtml) return;
+
+            const values = {
+                appName: inputs.appName.value || "Mafaza Pro",
+                slogan: inputs.slogan.value || "Kreativitas tanpa batas",
+                logoUrl: inputs.logoUrl.value,
+                brandName: inputs.brandName.value || "malikfaza"
+            };
+
+            let modifiedHtml = originalHtml;
+
+            // 1. Replace App Name (Title & H1)
+            modifiedHtml = modifiedHtml.replace(/<title>.*?<\/title>/gi, `<title>${values.appName}<\/title>`);
+            modifiedHtml = modifiedHtml.replace(/Mafaza\s+Pro/gi, values.appName);
+            modifiedHtml = modifiedHtml.replace(/Mafaza\s*<br\s*\/?>\s*Pro/gi, values.appName);
+
+            // 2. Replace Slogan
+            modifiedHtml = modifiedHtml.replace(/Studio AI/g, values.slogan);
+            modifiedHtml = modifiedHtml.replace(/v3\.6 pro/gi, values.slogan);
+            modifiedHtml = modifiedHtml.replace(/kreativitas tanpa batas/gi, values.slogan);
+
+            // 3. Replace Logo
+            if (values.logoUrl) {
+                const knownLogoUrl = "https://i.ibb.co.com/QGQz1YD/STUDIO-AI5.png";
+                const escapedLogo = knownLogoUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const logoRegex = new RegExp(escapedLogo, 'g');
+                modifiedHtml = modifiedHtml.replace(logoRegex, values.logoUrl);
+            }
+
+            // 4. Replace Brand Name (Footer)
+            modifiedHtml = modifiedHtml.replace(/malikfaza/gi, values.brandName);
+
+            // 5. Replace Sidebar Gradients
+            modifiedHtml = modifiedHtml.replace(/--bg-sidebar-start:\s*#[0-9a-fA-F]{6}/gi, `--bg-sidebar-start: ${inputs.sidebarStart.value}`);
+            modifiedHtml = modifiedHtml.replace(/--bg-sidebar-end:\s*#[0-9a-fA-F]{6}/gi, `--bg-sidebar-end: ${inputs.sidebarEnd.value}`);
+            modifiedHtml = modifiedHtml.replace(/from-\[#0e7490\]/gi, `from-[${inputs.sidebarStart.value}]`);
+            modifiedHtml = modifiedHtml.replace(/to-\[#1e3a8a\]/gi, `to-[${inputs.sidebarEnd.value}]`);
+
+            // 6. Replace Logo Container Gradients
+            modifiedHtml = modifiedHtml.replace(/from-cyan-600/gi, `from-[${inputs.logoStart.value}]`);
+            modifiedHtml = modifiedHtml.replace(/to-blue-600/gi, `to-[${inputs.logoEnd.value}]`);
+
+            // Inject the new HTML into the iframe
+            previewFrame.srcdoc = modifiedHtml;
+        }
+
+        function getRebrandedContent() {
+            if (!originalHtml) return "";
+
+            const values = {
+                appName: inputs.appName.value || "Mafaza Pro",
+                slogan: inputs.slogan.value || "Kreativitas tanpa batas",
+                logoUrl: inputs.logoUrl.value,
+                brandName: inputs.brandName.value || "malikfaza"
+            };
+
+            let modifiedHtml = originalHtml;
+            modifiedHtml = modifiedHtml.replace(/<title>.*?<\/title>/gi, `<title>${values.appName}<\/title>`);
+            modifiedHtml = modifiedHtml.replace(/Mafaza\s+Pro/gi, values.appName);
+            modifiedHtml = modifiedHtml.replace(/Mafaza\s*<br\s*\/?>\s*Pro/gi, values.appName);
+            modifiedHtml = modifiedHtml.replace(/Studio AI/g, values.slogan);
+            modifiedHtml = modifiedHtml.replace(/v3\.6 pro/gi, values.slogan);
+            modifiedHtml = modifiedHtml.replace(/kreativitas tanpa batas/gi, values.slogan);
+            if (values.logoUrl) {
+                const knownLogoUrl = "https://i.ibb.co.com/QGQz1YD/STUDIO-AI5.png";
+                modifiedHtml = modifiedHtml.replace(new RegExp(knownLogoUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), values.logoUrl);
+            }
+            modifiedHtml = modifiedHtml.replace(/malikfaza/gi, values.brandName);
+            modifiedHtml = modifiedHtml.replace(/malikfaza/gi, values.brandName);
+            modifiedHtml = modifiedHtml.replace(/Ichsan Labs/gi, values.brandName);
+
+            modifiedHtml = modifiedHtml.replace(/--bg-sidebar-start:\s*#[0-9a-fA-F]{6}/gi, `--bg-sidebar-start: ${inputs.sidebarStart.value}`);
+            modifiedHtml = modifiedHtml.replace(/--bg-sidebar-end:\s*#[0-9a-fA-F]{6}/gi, `--bg-sidebar-end: ${inputs.sidebarEnd.value}`);
+            modifiedHtml = modifiedHtml.replace(/from-\[#0e7490\]/gi, `from-[${inputs.sidebarStart.value}]`);
+            modifiedHtml = modifiedHtml.replace(/to-\[#1e3a8a\]/gi, `to-[${inputs.sidebarEnd.value}]`);
+
+            modifiedHtml = modifiedHtml.replace(/from-cyan-600/gi, `from-[${inputs.logoStart.value}]`);
+            modifiedHtml = modifiedHtml.replace(/to-blue-600/gi, `to-[${inputs.logoEnd.value}]`);
+
+            return modifiedHtml;
+        }
+
+        // --- CLIPBOARD HELPER ---
+        function safeCopyToClipboard(text, btnId) {
+            const btn = document.getElementById(btnId);
+            const originalContent = btn.innerHTML;
+            const onSuccess = () => {
+                btn.innerHTML = `<i data-lucide="check" class="w-4 h-4"></i> Tersalin!`;
+                lucide.createIcons();
+                setTimeout(() => {
+                    btn.innerHTML = originalContent;
+                    lucide.createIcons();
+                }, 2000);
+            };
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(onSuccess).catch(err => fallbackCopyText(text, onSuccess));
+            } else {
+                fallbackCopyText(text, onSuccess);
+            }
+        }
+
+        function fallbackCopyText(text, callback) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.position = "fixed";
+            textArea.style.opacity = "0";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                if (document.execCommand('copy')) callback();
+                else alert('Gagal menyalin teks.');
+            } catch (err) {
+                alert('Gagal menyalin: ' + err);
+            }
+            document.body.removeChild(textArea);
+        }
+
+        function copyCode() {
+            const content = getRebrandedContent();
+            if (!content) {
+                alert("Silakan unggah file terlebih dahulu.");
+                return;
+            }
+            safeCopyToClipboard(content, 'btn-copy-code');
+        }
+
+        function copyPrompt() {
+            const appName = inputs.appName.value || "Aplikasi Saya";
+            const promptText = `buatkan file html kosong bernama '${appName}'`;
+            safeCopyToClipboard(promptText, 'btn-copy-prompt');
+        }
+
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+    </script>
+</body>
+
+</html>
