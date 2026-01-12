@@ -237,6 +237,120 @@
                         </div>
                     </div>
 
+                    <div class="border-t border-[var(--border-color)] pt-3">
+                        <button id="toggle-sidebar-edit"
+                            class="flex items-center justify-between w-full text-left text-xs font-bold mb-2 text-[var(--accent-brown)]">
+                            <span>Edit Nama Menu Sidebar</span>
+                            <i data-lucide="chevron-down" id="icon-sidebar-edit"
+                                class="w-4 h-4 transition-transform"></i>
+                        </button>
+                        <div id="sidebar-edit-container"
+                            class="hidden space-y-3 pl-2 border-l-2 border-[var(--border-color)]">
+
+                            <!-- Group: Edit & Gabung -->
+                            <div>
+                                <h4 class="text-[10px] font-bold text-gray-400 uppercase mb-1">Edit & Gabung</h4>
+                                <div class="space-y-2">
+                                    <input type="text" id="menu-gabung-foto" data-original="Gabung Foto"
+                                        placeholder="Gabung Foto" class="input-field text-xs py-1">
+                                    <input type="text" id="menu-foto-miniatur" data-original="Foto Miniatur"
+                                        placeholder="Foto Miniatur" class="input-field text-xs py-1">
+                                    <input type="text" id="menu-perluas-foto" data-original="Perluas Foto"
+                                        placeholder="Perluas Foto" class="input-field text-xs py-1">
+                                    <input type="text" id="menu-edit-foto" data-original="Edit Foto"
+                                        placeholder="Edit Foto (Induk)" class="input-field text-xs py-1">
+                                    <input type="text" id="menu-edit-magic" data-original="Edit Magic"
+                                        placeholder="Edit Magic" class="input-field text-xs py-1 ml-2 w-[95%]">
+                                    <input type="text" id="menu-perbaiki-foto" data-original="Perbaiki Foto"
+                                        placeholder="Perbaiki Foto" class="input-field text-xs py-1 ml-2 w-[95%]">
+                                    <input type="text" id="menu-face-swap" data-original="Face Swap"
+                                        placeholder="Face Swap" class="input-field text-xs py-1">
+                                    <input type="text" id="menu-foto-artis" data-original="Foto Artis"
+                                        placeholder="Foto Artis" class="input-field text-xs py-1">
+                                    <input type="text" id="menu-hapus-bg" data-original="Hapus BG"
+                                        placeholder="Hapus BG" class="input-field text-xs py-1">
+                                </div>
+                            </div>
+
+                            <!-- Group: Produk & Promosi -->
+                            <div>
+                                <h4 class="text-[10px] font-bold text-gray-400 uppercase mb-1">Produk & Promosi</h4>
+                                <div class="space-y-2">
+                                    <input type="text" id="menu-foto-produk" data-original="Foto Produk"
+                                        placeholder="Foto Produk (Induk)" class="input-field text-xs py-1">
+                                    <input type="text" id="menu-produk-saja" data-original="Produk Saja"
+                                        placeholder="Produk Saja" class="input-field text-xs py-1 ml-2 w-[95%]">
+                                    <input type="text" id="menu-produk-model" data-original="Produk + Model"
+                                        placeholder="Produk + Model" class="input-field text-xs py-1 ml-2 w-[95%]">
+                                    <input type="text" id="menu-foto-fashion" data-original="Foto Fashion"
+                                        placeholder="Foto Fashion" class="input-field text-xs py-1">
+                                    <input type="text" id="menu-buat-mockup" data-original="Buat Mockup"
+                                        placeholder="Buat Mockup" class="input-field text-xs py-1">
+                                    <input type="text" id="menu-buat-banner" data-original="Buat Banner"
+                                        placeholder="Buat Banner" class="input-field text-xs py-1">
+                                    <input type="text" id="menu-buat-carousel" data-original="Buat Carousel"
+                                        placeholder="Buat Carousel" class="input-field text-xs py-1">
+                                    <input type="text" id="menu-pov-tangan" data-original="POV Tangan"
+                                        placeholder="POV Tangan" class="input-field text-xs py-1">
+                                </div>
+                            </div>
+
+                            <!-- Group: Gaya Hidup -->
+                            <div>
+                                <h4 class="text-[10px] font-bold text-gray-400 uppercase mb-1">Gaya Hidup</h4>
+                                <div class="space-y-2">
+                                    <input type="text" id="menu-pre-wedding" data-original="Pre+Wedding"
+                                        placeholder="Pre+Wedding" class="input-field text-xs py-1">
+                                    <input type="text" id="menu-kamar-pas" data-original="Kamar Pas"
+                                        placeholder="Kamar Pas" class="input-field text-xs py-1">
+                                    <input type="text" id="menu-retouch" data-original="Retouch" placeholder="Retouch"
+                                        class="input-field text-xs py-1">
+
+                                    <input type="text" id="menu-foto-model" data-original="Foto Model"
+                                        placeholder="Foto Model (Induk)" class="input-field text-xs py-1">
+                                    <input type="text" id="menu-buat-model" data-original="Buat Model"
+                                        placeholder="Buat Model" class="input-field text-xs py-1 ml-2 w-[95%]">
+                                    <input type="text" id="menu-ubah-pose" data-original="Ubah Pose"
+                                        placeholder="Ubah Pose" class="input-field text-xs py-1 ml-2 w-[95%]">
+                                    <input type="text" id="menu-ubah-angle" data-original="Ubah Angle"
+                                        placeholder="Ubah Angle" class="input-field text-xs py-1 ml-2 w-[95%]">
+
+                                    <input type="text" id="menu-fotografer" data-original="Fotografer"
+                                        placeholder="Fotografer (Induk)" class="input-field text-xs py-1">
+                                    <input type="text" id="menu-baby-born" data-original="Baby Born"
+                                        placeholder="Baby Born" class="input-field text-xs py-1 ml-2 w-[95%]">
+                                    <input type="text" id="menu-kids" data-original="Kids" placeholder="Kids"
+                                        class="input-field text-xs py-1 ml-2 w-[95%]">
+                                    <input type="text" id="menu-umrah" data-original="Umrah/Haji"
+                                        placeholder="Umrah/Haji" class="input-field text-xs py-1 ml-2 w-[95%]">
+                                    <input type="text" id="menu-pas-foto" data-original="Pas Foto"
+                                        placeholder="Pas Foto" class="input-field text-xs py-1 ml-2 w-[95%]">
+                                    <input type="text" id="menu-maternity" data-original="Maternity"
+                                        placeholder="Maternity" class="input-field text-xs py-1 ml-2 w-[95%]">
+
+                                    <input type="text" id="menu-barbershop" data-original="Barbershop"
+                                        placeholder="Barbershop" class="input-field text-xs py-1">
+                                </div>
+                            </div>
+
+                            <!-- Group: Desain -->
+                            <div>
+                                <h4 class="text-[10px] font-bold text-gray-400 uppercase mb-1">Desain & Ilustrasi</h4>
+                                <div class="space-y-2">
+                                    <input type="text" id="menu-desain-rumah" data-original="Desain Rumah"
+                                        placeholder="Desain Rumah" class="input-field text-xs py-1">
+                                    <input type="text" id="menu-sketsa-gambar" data-original="Sketsa Gambar"
+                                        placeholder="Sketsa Gambar" class="input-field text-xs py-1">
+                                    <input type="text" id="menu-art-karikatur" data-original="Art & Karikatur"
+                                        placeholder="Art & Karikatur" class="input-field text-xs py-1">
+                                    <input type="text" id="menu-auto-rapi" data-original="Auto Rapi"
+                                        placeholder="Auto Rapi" class="input-field text-xs py-1">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -375,6 +489,45 @@
             logoEndHex: document.getElementById('logo-end-hex'),
         };
 
+        // Sidebar Menu Inputs
+        const menuInputs = {
+            'tab-product-photography': document.getElementById('menu-gabung-foto'),
+            'tab-foto-miniatur': document.getElementById('menu-foto-miniatur'),
+            'tab-perluas-foto': document.getElementById('menu-perluas-foto'),
+            'nav-edit-foto-toggle': document.getElementById('menu-edit-foto'),
+            'subtab-edit-magic': document.getElementById('menu-edit-magic'),
+            'subtab-perbaiki-foto': document.getElementById('menu-perbaiki-foto'),
+            'tab-face-swap': document.getElementById('menu-face-swap'),
+            'tab-foto-artis': document.getElementById('menu-foto-artis'),
+            'tab-hapus-bg': document.getElementById('menu-hapus-bg'),
+            'nav-product-toggle': document.getElementById('menu-foto-produk'),
+            'subtab-product-only': document.getElementById('menu-produk-saja'),
+            'subtab-product-model': document.getElementById('menu-produk-model'),
+            'tab-fashion': document.getElementById('menu-foto-fashion'),
+            'tab-desain-mockup': document.getElementById('menu-buat-mockup'),
+            'tab-combine-text': document.getElementById('menu-buat-banner'),
+            'tab-bikin-carousel': document.getElementById('menu-buat-carousel'),
+            'tab-pov-tangan': document.getElementById('menu-pov-tangan'),
+            'tab-pre-wedding': document.getElementById('menu-pre-wedding'),
+            'tab-kamar-pas': document.getElementById('menu-kamar-pas'),
+            'tab-retouch-wajah': document.getElementById('menu-retouch'),
+            'nav-model-toggle': document.getElementById('menu-foto-model'),
+            'subtab-model-create': document.getElementById('menu-buat-model'),
+            'subtab-model-repose': document.getElementById('menu-ubah-pose'),
+            'subtab-model-angle': document.getElementById('menu-ubah-angle'),
+            'nav-photographer-toggle': document.getElementById('menu-fotografer'),
+            'subtab-baby': document.getElementById('menu-baby-born'),
+            'subtab-kids': document.getElementById('menu-kids'),
+            'subtab-umrah': document.getElementById('menu-umrah'),
+            'subtab-passport': document.getElementById('menu-pas-foto'),
+            'subtab-maternity': document.getElementById('menu-maternity'),
+            'tab-barbershop': document.getElementById('menu-barbershop'),
+            'tab-desain-rumah': document.getElementById('menu-desain-rumah'),
+            'tab-sketch-to-image': document.getElementById('menu-sketsa-gambar'),
+            'tab-art-karikatur': document.getElementById('menu-art-karikatur'),
+            'tab-auto-rapi': document.getElementById('menu-auto-rapi'),
+        };
+
         // --- Logic Mode Pratinjau (Desktop/Mobile) ---
         window.setPreviewMode = function (mode) {
             currentMode = mode;
@@ -480,6 +633,18 @@
         setupColorSync(inputs.logoStart, inputs.logoStartHex);
         setupColorSync(inputs.logoEnd, inputs.logoEndHex);
 
+        // Sidebar Edit Toggle
+        document.getElementById('toggle-sidebar-edit').addEventListener('click', () => {
+            const container = document.getElementById('sidebar-edit-container');
+            const icon = document.getElementById('icon-sidebar-edit');
+            container.classList.toggle('hidden');
+            if (container.classList.contains('hidden')) {
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                icon.style.transform = 'rotate(180deg)';
+            }
+        });
+
 
         // Event Listeners for File Upload
         fileUpload.addEventListener('change', handleFileSelect);
@@ -502,6 +667,10 @@
         // Event Listeners for Inputs (Debounced)
         Object.values(inputs).forEach(input => {
             input.addEventListener('input', debounce(updatePreview, 300));
+        });
+
+        Object.values(menuInputs).forEach(input => {
+            if (input) input.addEventListener('input', debounce(updatePreview, 300));
         });
 
         document.getElementById('btn-copy-prompt').addEventListener('click', copyPrompt);
@@ -527,6 +696,27 @@
             // 4. Extract Brand Name (Footer)
             const footerMatch = html.match(/document\.getElementById\('footer-text'\)\.innerHTML\s*=\s*['"].*?by\s+(.*?)['"]/);
             if (footerMatch) inputs.brandName.value = footerMatch[1];
+
+            // 5. Detect Sidebar Values
+            Object.keys(menuInputs).forEach(id => {
+                // Determine if it's a subtab or main tab to guess structure slightly better if needed, 
+                // but generally we look for the ID and then the text content within.
+                // Regex: id="TAB_ID".*?<span>(.*?)</span>
+                // or for nav toggles: id="NAV_ID".*?<span>(.*?)</span>
+                // Note: The HTML structure might vary slightly but usually it is <button id="...">...<span>TEXT</span>...</button>
+
+                // Construct regex with proper escaping for the ID
+                const escapedId = id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                // We search for ID, then capture the content inside the NEXT span tag which usually contains the label
+                // Handle different button structures (icons then span, or just text)
+                const regex = new RegExp(`id=["']${escapedId}["'][^>]*>[\\s\\S]*?<span[^>]*>(.*?)<\\/span>`, 'i');
+                const match = html.match(regex);
+                if (match && match[1]) {
+                    if (menuInputs[id]) menuInputs[id].value = match[1].trim();
+                }
+                // Fallback for simple text buttons without span (unlikely in this template but good safety)
+                // If not found, we keep the default placeholder/value matching the input logic
+            });
         }
 
         let isPlrFile = false;
@@ -601,6 +791,11 @@
             inputs.logoEnd.value = "#2563eb";
             inputs.logoEndHex.value = "#2563eb";
 
+            // Reset Menu Inputs
+            Object.values(menuInputs).forEach(input => {
+                if (input) input.value = input.getAttribute('data-original') || "";
+            });
+
             // Render raw original HTML
             previewFrame.srcdoc = originalHtml;
         }
@@ -659,7 +854,34 @@
             modifiedHtml = modifiedHtml.replace(/from-cyan-600/gi, `from-[${inputs.logoStart.value}]`);
             modifiedHtml = modifiedHtml.replace(/to-(blue-600|cyan-500)/gi, `to-[${inputs.logoEnd.value}]`);
 
-            // 7. FIX SIDEBAR FOR PLR
+            // 7. Replace Sidebar Menu Texts
+            Object.keys(menuInputs).forEach(id => {
+                const input = menuInputs[id];
+                if (input && input.value) {
+                    const newValue = input.value;
+                    const escapedId = id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    const regex = new RegExp(`(id=["']${escapedId}["'][^>]*>[\\s\\S]*?<span[^>]*>)(.*?)(<\\/span>)`, 'gi');
+                    modifiedHtml = modifiedHtml.replace(regex, `$1${newValue}$3`);
+                }
+            });
+            modifiedHtml = modifiedHtml.replace(/to-(blue-600|cyan-500)/gi, `to-[${inputs.logoEnd.value}]`);
+
+            // 7. Replace Sidebar Menu Texts
+            Object.keys(menuInputs).forEach(id => {
+                const input = menuInputs[id];
+                if (input && input.value) {
+                    const newValue = input.value;
+                    const escapedId = id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+                    // Regex to find the span content for this specific ID
+                    // We must be careful to match the specific button
+                    const regex = new RegExp(`(id=["']${escapedId}["'][^>]*>[\\s\\S]*?<span[^>]*>)(.*?)(<\\/span>)`, 'gi');
+
+                    modifiedHtml = modifiedHtml.replace(regex, `$1${newValue}$3`);
+                }
+            });
+
+            // 8. FIX SIDEBAR FOR PLR
             modifiedHtml = modifiedHtml.replace(/bg-\[var\(--bg-dark\)\]/g, `bg-gradient-to-b from-[var(--bg-sidebar-start)] to-[var(--bg-sidebar-end)]`);
 
             // Inject the new HTML into the iframe
@@ -708,6 +930,17 @@
 
             modifiedHtml = modifiedHtml.replace(/from-cyan-600/gi, `from-[${inputs.logoStart.value}]`);
             modifiedHtml = modifiedHtml.replace(/to-(blue-600|cyan-500)/gi, `to-[${inputs.logoEnd.value}]`);
+
+            // Replace Sidebar Menu Texts
+            Object.keys(menuInputs).forEach(id => {
+                const input = menuInputs[id];
+                if (input && input.value) {
+                    const newValue = input.value;
+                    const escapedId = id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    const regex = new RegExp(`(id=["']${escapedId}["'][^>]*>[\\s\\S]*?<span[^>]*>)(.*?)(<\\/span>)`, 'gi');
+                    modifiedHtml = modifiedHtml.replace(regex, `$1${newValue}$3`);
+                }
+            });
 
             // FIX SIDEBAR FOR PLR
             modifiedHtml = modifiedHtml.replace(/bg-\[var\(--bg-dark\)\]/g, `bg-gradient-to-b from-[var(--bg-sidebar-start)] to-[var(--bg-sidebar-end)]`);
