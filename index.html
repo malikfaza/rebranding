@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rebranding Tool - Mafaza Pro</title>
+    <title>Rebranding Tool - Sulap Foto</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@700&display=swap"
         rel="stylesheet">
@@ -99,10 +99,16 @@
     <nav
         class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md shadow-sm z-50 border-b border-[var(--border-color)] px-6 py-4 flex justify-between items-center transition-all duration-300">
         <div class="max-w-7xl mx-auto w-full flex justify-between items-center">
-            <h1 class="text-xl md:text-2xl font-bold font-serif text-[var(--accent-brown)] flex items-center gap-2">
-                <i data-lucide="paint-brush" class="w-6 h-6"></i>
-                Rebranding by malikfaza
-            </h1>
+            <div class="flex flex-col">
+                <span
+                    class="text-[10px] font-bold text-white bg-[var(--accent-brown)] px-2 py-0.5 rounded-full w-fit mb-1">
+                    TOOLS KHUSUS REBRANDING SULAP FOTO
+                </span>
+                <h1 class="text-xl md:text-2xl font-bold font-serif text-[var(--accent-brown)] flex items-center gap-2">
+                    <i data-lucide="paint-brush" class="w-6 h-6"></i>
+                    Rebranding by malikfaza
+                </h1>
+            </div>
             <a href="https://lynk.id/malikfaza" target="_blank"
                 class="text-sm font-semibold text-[var(--accent-brown)] hover:text-[#6F370F] transition-colors flex items-center gap-1">
                 <i data-lucide="link" class="w-4 h-4"></i>
@@ -258,7 +264,7 @@
 
                 <!-- Toolbar Pratinjau -->
                 <div
-                    class="p-3 border-b border-[var(--border-color)] bg-[var(--bg-cream)] flex justify-between items-center z-20">
+                    class="p-3 border-b border-[var(--border-color)] bg-[var(--bg-cream)] flex justify-between items-center z-20 shrink-0">
                     <div class="flex items-center gap-2">
                         <span class="w-3 h-3 rounded-full bg-red-400"></span>
                         <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
@@ -282,8 +288,8 @@
                     <div class="w-16"></div> <!-- Spacer untuk keseimbangan -->
                 </div>
 
-                <!-- Area Frame Pratinjau -->
-                <div class="flex-grow bg-gray-100 relative overflow-hidden preview-area flex items-center justify-center transition-colors duration-300"
+                <!-- Area Frame Pratinjau (Space putih dihilangkan di sini untuk desktop) -->
+                <div class="flex-grow bg-gray-100 relative overflow-hidden preview-area flex items-center justify-center transition-all duration-300"
                     id="preview-bg">
 
                     <!-- Device Wrapper -->
@@ -292,9 +298,9 @@
                         <iframe id="preview-frame" class="w-full h-full border-0 rounded-none"
                             sandbox="allow-scripts allow-modals allow-same-origin allow-forms"></iframe>
 
-                        <!-- Camera / Notch (Updated for punch hole) -->
+                        <!-- Camera (Punch hole) -->
                         <div id="notch"
-                            class="absolute top-4 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-black rounded-full opacity-0 transition-opacity duration-300 pointer-events-none z-10 border border-gray-800 shadow-inner">
+                            class="absolute top-4 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-black rounded-full opacity-0 transition-opacity duration-300 pointer-events-none z-10 border border-gray-700 shadow-inner">
                         </div>
                     </div>
 
@@ -303,7 +309,7 @@
                         class="absolute inset-0 flex flex-col items-center justify-center text-gray-400 p-8 text-center bg-gray-50 z-0">
                         <i data-lucide="layout" class="w-16 h-16 mb-4 opacity-20"></i>
                         <p class="font-bold text-gray-500">Belum ada file.</p>
-                        <p class="text-sm">Unggah file HTML di panel kiri.</p>
+                        <p class="text-sm">Unggah file HTML atau tempel kode di panel kiri.</p>
                     </div>
 
                 </div>
@@ -341,6 +347,7 @@
         const notch = document.getElementById('notch');
         const btnDesktop = document.getElementById('btn-desktop');
         const btnMobile = document.getElementById('btn-mobile');
+        const previewBg = document.getElementById('preview-bg');
 
         // Tab Elements
         const tabUpload = document.getElementById('tab-upload');
@@ -380,18 +387,24 @@
                 // Style Active Button
                 btnMobile.className = "p-2 rounded md:px-3 flex items-center gap-2 text-xs font-bold transition-all bg-[var(--accent-brown)] text-white shadow-md";
 
+                // Add padding to background for mobile view (to center it nicely)
+                previewBg.classList.add('py-8');
+
                 // Style Mobile Frame (Punch-hole style)
-                deviceFrame.className = "relative w-[340px] h-[680px] bg-white border-[10px] border-gray-800 rounded-[2.5rem] shadow-2xl overflow-hidden ring-4 ring-gray-300 transition-all duration-500 ease-in-out my-auto";
+                deviceFrame.className = "relative w-[340px] h-[680px] bg-white border-[8px] border-gray-800 rounded-[2.5rem] shadow-2xl overflow-hidden ring-2 ring-gray-300 transition-all duration-500 ease-in-out my-auto flex-shrink-0";
 
-                // Show Punch-hole Camera
-                notch.className = "absolute top-3 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-black rounded-full opacity-100 transition-opacity duration-300 pointer-events-none z-10 border border-gray-700";
+                // Show Punch-hole Camera (Bulatan kecil)
+                notch.className = "absolute top-3 left-1/2 transform -translate-x-1/2 w-3.5 h-3.5 bg-black rounded-full opacity-100 transition-opacity duration-300 pointer-events-none z-10 border border-gray-700 shadow-sm";
 
-                // Add scroll to parent if needed
-                document.getElementById('preview-bg').classList.add('overflow-y-auto');
+                // Enable scrolling on parent if content is taller
+                previewBg.classList.add('overflow-y-auto');
 
             } else {
                 // Style Active Button
                 btnDesktop.className = "p-2 rounded md:px-3 flex items-center gap-2 text-xs font-bold transition-all bg-[var(--accent-brown)] text-white shadow-md";
+
+                // Remove padding for desktop view (FULL FILL)
+                previewBg.classList.remove('py-8');
 
                 // Style Desktop Frame (No Frame / Full Width)
                 deviceFrame.className = "w-full h-full bg-white border-0 shadow-none rounded-none transition-all duration-500 ease-in-out";
@@ -399,7 +412,8 @@
                 // Hide Camera
                 notch.className = "absolute top-4 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-black rounded-full opacity-0 transition-opacity duration-300 pointer-events-none z-10";
 
-                document.getElementById('preview-bg').classList.remove('overflow-y-auto');
+                // Disable scrolling on parent (iframe scrolls internally)
+                previewBg.classList.remove('overflow-y-auto');
             }
         }
 
@@ -431,6 +445,9 @@
             originalHtml = code;
             fileName = "rebranded_pasted_code.html";
             emptyState.classList.add('hidden');
+
+            // Auto detect like in upload
+            autoDetectValues(code);
             updatePreview();
 
             // Visual feedback
@@ -491,7 +508,29 @@
         document.getElementById('btn-copy-code').addEventListener('click', copyCode);
         document.getElementById('btn-reload').addEventListener('click', reloadOriginal);
 
-        // Functions
+        // Helper for detection (used by both upload and paste)
+        function autoDetectValues(html) {
+            // 1. Extract App Name (H1 or Title)
+            const h1Match = html.match(/<h1[^>]*>(.*?)<\/h1>/i);
+            const titleMatch = html.match(/<title>(.*?)<\/title>/i);
+            if (h1Match) inputs.appName.value = h1Match[1].trim();
+            else if (titleMatch) inputs.appName.value = titleMatch[1].trim();
+
+            // 2. Extract Slogan (Small text under H1)
+            const sloganMatch = html.match(/<p[^>]*text-xs[^>]*>(.*?)<\/p>/i);
+            if (sloganMatch) inputs.slogan.value = sloganMatch[1].trim();
+
+            // 3. Extract Logo URL
+            const logoMatch = html.match(/<img[^>]*src="([^"]+)"[^>]*alt=".*Logo.*"[^>]*>/i);
+            if (logoMatch) inputs.logoUrl.value = logoMatch[1];
+
+            // 4. Extract Brand Name (Footer)
+            const footerMatch = html.match(/document\.getElementById\('footer-text'\)\.innerHTML\s*=\s*['"].*?by\s+(.*?)['"]/);
+            if (footerMatch) inputs.brandName.value = footerMatch[1];
+        }
+
+        let isPlrFile = false;
+
         function handleFileSelect() {
             const file = fileUpload.files[0];
             if (!file) return;
@@ -510,7 +549,30 @@
 
             const reader = new FileReader();
             reader.onload = function (e) {
-                originalHtml = e.target.result;
+                let html = e.target.result;
+                isPlrFile = false;
+
+                // PLR Detection logic same as before...
+                const plrMatch = html.match(/<script>[\s\S]*?document\.write\((?:decodeURIComponent|unescape)\(['"]([^'"]+)['"]\)\);?[\s\S]*?<\/script>/);
+                if (plrMatch) {
+                    try {
+                        console.log("PLR Format Detected.");
+                        if (html.includes("unescape")) {
+                            html = unescape(plrMatch[1]);
+                        } else {
+                            html = decodeURIComponent(plrMatch[1]);
+                        }
+                        isPlrFile = true;
+                    } catch (err) {
+                        console.error(err);
+                        alert("Gagal memproses file PLR.");
+                        return;
+                    }
+                }
+
+                autoDetectValues(html);
+
+                originalHtml = html;
                 emptyState.classList.add('hidden');
                 updatePreview();
             };
@@ -558,6 +620,7 @@
             // 1. Replace App Name (Title & H1)
             modifiedHtml = modifiedHtml.replace(/<title>.*?<\/title>/gi, `<title>${values.appName}<\/title>`);
             modifiedHtml = modifiedHtml.replace(/Mafaza\s+Pro/gi, values.appName);
+            modifiedHtml = modifiedHtml.replace(/Sulap\s+Foto/gi, values.appName);
             modifiedHtml = modifiedHtml.replace(/Mafaza\s*<br\s*\/?>\s*Pro/gi, values.appName);
 
             // 2. Replace Slogan
@@ -567,14 +630,24 @@
 
             // 3. Replace Logo
             if (values.logoUrl) {
-                const knownLogoUrl = "https://i.ibb.co.com/QGQz1YD/STUDIO-AI5.png";
-                const escapedLogo = knownLogoUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                const logoRegex = new RegExp(escapedLogo, 'g');
-                modifiedHtml = modifiedHtml.replace(logoRegex, values.logoUrl);
+                const knownLogos = [
+                    "https://i.ibb.co.com/QGQz1YD/STUDIO-AI5.png",
+                    "https://sulapfoto.com/sflogo.png"
+                ];
+                knownLogos.forEach(logo => {
+                    const escapedLogo = logo.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    const logoRegex = new RegExp(escapedLogo, 'g');
+                    modifiedHtml = modifiedHtml.replace(logoRegex, values.logoUrl);
+                });
             }
 
             // 4. Replace Brand Name (Footer)
+            modifiedHtml = modifiedHtml.replace(
+                /(document\.getElementById\('footer-text'\)\.innerHTML\s*=\s*['"].*?by\s+)(.*?)(['"])/i,
+                "$1" + values.brandName + "$3"
+            );
             modifiedHtml = modifiedHtml.replace(/malikfaza/gi, values.brandName);
+            modifiedHtml = modifiedHtml.replace(/Ichsan Labs/gi, values.brandName);
 
             // 5. Replace Sidebar Gradients
             modifiedHtml = modifiedHtml.replace(/--bg-sidebar-start:\s*#[0-9a-fA-F]{6}/gi, `--bg-sidebar-start: ${inputs.sidebarStart.value}`);
@@ -584,7 +657,10 @@
 
             // 6. Replace Logo Container Gradients
             modifiedHtml = modifiedHtml.replace(/from-cyan-600/gi, `from-[${inputs.logoStart.value}]`);
-            modifiedHtml = modifiedHtml.replace(/to-blue-600/gi, `to-[${inputs.logoEnd.value}]`);
+            modifiedHtml = modifiedHtml.replace(/to-(blue-600|cyan-500)/gi, `to-[${inputs.logoEnd.value}]`);
+
+            // 7. FIX SIDEBAR FOR PLR
+            modifiedHtml = modifiedHtml.replace(/bg-\[var\(--bg-dark\)\]/g, `bg-gradient-to-b from-[var(--bg-sidebar-start)] to-[var(--bg-sidebar-end)]`);
 
             // Inject the new HTML into the iframe
             previewFrame.srcdoc = modifiedHtml;
@@ -603,15 +679,25 @@
             let modifiedHtml = originalHtml;
             modifiedHtml = modifiedHtml.replace(/<title>.*?<\/title>/gi, `<title>${values.appName}<\/title>`);
             modifiedHtml = modifiedHtml.replace(/Mafaza\s+Pro/gi, values.appName);
+            modifiedHtml = modifiedHtml.replace(/Sulap\s+Foto/gi, values.appName);
             modifiedHtml = modifiedHtml.replace(/Mafaza\s*<br\s*\/?>\s*Pro/gi, values.appName);
             modifiedHtml = modifiedHtml.replace(/Studio AI/g, values.slogan);
             modifiedHtml = modifiedHtml.replace(/v3\.6 pro/gi, values.slogan);
             modifiedHtml = modifiedHtml.replace(/kreativitas tanpa batas/gi, values.slogan);
             if (values.logoUrl) {
-                const knownLogoUrl = "https://i.ibb.co.com/QGQz1YD/STUDIO-AI5.png";
-                modifiedHtml = modifiedHtml.replace(new RegExp(knownLogoUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), values.logoUrl);
+                const knownLogos = [
+                    "https://i.ibb.co.com/QGQz1YD/STUDIO-AI5.png",
+                    "https://sulapfoto.com/sflogo.png"
+                ];
+                knownLogos.forEach(logo => {
+                    modifiedHtml = modifiedHtml.replace(new RegExp(logo.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), values.logoUrl);
+                });
             }
-            modifiedHtml = modifiedHtml.replace(/malikfaza/gi, values.brandName);
+            // Same logic for export
+            modifiedHtml = modifiedHtml.replace(
+                /(document\.getElementById\('footer-text'\)\.innerHTML\s*=\s*['"].*?by\s+)(.*?)(['"])/i,
+                "$1" + values.brandName + "$3"
+            );
             modifiedHtml = modifiedHtml.replace(/malikfaza/gi, values.brandName);
             modifiedHtml = modifiedHtml.replace(/Ichsan Labs/gi, values.brandName);
 
@@ -621,7 +707,16 @@
             modifiedHtml = modifiedHtml.replace(/to-\[#1e3a8a\]/gi, `to-[${inputs.sidebarEnd.value}]`);
 
             modifiedHtml = modifiedHtml.replace(/from-cyan-600/gi, `from-[${inputs.logoStart.value}]`);
-            modifiedHtml = modifiedHtml.replace(/to-blue-600/gi, `to-[${inputs.logoEnd.value}]`);
+            modifiedHtml = modifiedHtml.replace(/to-(blue-600|cyan-500)/gi, `to-[${inputs.logoEnd.value}]`);
+
+            // FIX SIDEBAR FOR PLR
+            modifiedHtml = modifiedHtml.replace(/bg-\[var\(--bg-dark\)\]/g, `bg-gradient-to-b from-[var(--bg-sidebar-start)] to-[var(--bg-sidebar-end)]`);
+
+            // Re-encode if PLR
+            if (isPlrFile) {
+                const encoded = encodeURIComponent(modifiedHtml).replace(/'/g, "%27");
+                modifiedHtml = `<script>document.write(decodeURIComponent('${encoded}'));<\/script>`;
+            }
 
             return modifiedHtml;
         }
@@ -668,7 +763,7 @@
         function copyCode() {
             const content = getRebrandedContent();
             if (!content) {
-                alert("Silakan unggah file terlebih dahulu.");
+                alert("Silakan unggah file atau tempel kode terlebih dahulu.");
                 return;
             }
             safeCopyToClipboard(content, 'btn-copy-code');
