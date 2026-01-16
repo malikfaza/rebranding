@@ -196,6 +196,12 @@
                     </div>
 
                     <div>
+                        <label class="block text-xs font-semibold mb-1 text-gray-600">New API Key (For Imagen)</label>
+                        <input type="text" id="api-key" value="" class="input-field text-sm"
+                            placeholder="Enter key to replace/inject (Optional)">
+                    </div>
+
+                    <div>
                         <label class="block text-xs font-semibold mb-1 text-gray-600">Footer Brand</label>
                         <input type="text" id="brand-name" value="malikfaza" class="input-field text-sm"
                             placeholder="malikfaza">
@@ -477,6 +483,7 @@
             appName: document.getElementById('app-name'),
             slogan: document.getElementById('app-slogan'),
             logoUrl: document.getElementById('logo-url'),
+            apiKey: document.getElementById('api-key'),
             brandName: document.getElementById('brand-name'),
             sidebarStart: document.getElementById('sidebar-start'),
             sidebarEnd: document.getElementById('sidebar-end'),
@@ -807,6 +814,8 @@
                 appName: inputs.appName.value || "Mafaza Pro",
                 slogan: inputs.slogan.value || "Kreativitas tanpa batas",
                 logoUrl: inputs.logoUrl.value,
+                logoUrl: inputs.logoUrl.value,
+                apiKey: inputs.apiKey.value,
                 brandName: inputs.brandName.value || "malikfaza"
             };
 
@@ -884,6 +893,27 @@
             // 8. FIX SIDEBAR FOR PLR
             modifiedHtml = modifiedHtml.replace(/bg-\[var\(--bg-dark\)\]/g, `bg-gradient-to-b from-[var(--bg-sidebar-start)] to-[var(--bg-sidebar-end)]`);
 
+            // 9. API URL Replacement (Gemini -> Imagen)
+            // Replace Base URL
+            modifiedHtml = modifiedHtml.replace(
+                /https:\/\/generativelanguage\.googleapis\.com\/v1beta\/models\/gemini-2\.5-flash-image-preview:generateContent/g,
+                "https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict"
+            );
+            // Replace Variable Usage in URL
+            modifiedHtml = modifiedHtml.replace(/\$\{GOOGLE_API_KEY\}/g, "${apiKey}");
+
+            // If API Key provided, inject it
+            if (values.apiKey) {
+                modifiedHtml = modifiedHtml.replace(
+                    /const\s+apiKey\s*=\s*(window\.GOOGLE_API_KEY|["'].*?["']|process\.env\..*?);?/g,
+                    `const apiKey = "${values.apiKey}";`
+                );
+                modifiedHtml = modifiedHtml.replace(
+                    /const\s+GOOGLE_API_KEY\s*=\s*["'].*?["'];?/g,
+                    `const GOOGLE_API_KEY = "${values.apiKey}"; const apiKey = "${values.apiKey}";`
+                );
+            }
+
             // Inject the new HTML into the iframe
             previewFrame.srcdoc = modifiedHtml;
         }
@@ -895,6 +925,7 @@
                 appName: inputs.appName.value || "Mafaza Pro",
                 slogan: inputs.slogan.value || "Kreativitas tanpa batas",
                 logoUrl: inputs.logoUrl.value,
+                apiKey: inputs.apiKey.value,
                 brandName: inputs.brandName.value || "malikfaza"
             };
 
@@ -944,6 +975,24 @@
 
             // FIX SIDEBAR FOR PLR
             modifiedHtml = modifiedHtml.replace(/bg-\[var\(--bg-dark\)\]/g, `bg-gradient-to-b from-[var(--bg-sidebar-start)] to-[var(--bg-sidebar-end)]`);
+
+            // API URL Replacement (Gemini -> Imagen)
+            modifiedHtml = modifiedHtml.replace(
+                /https:\/\/generativelanguage\.googleapis\.com\/v1beta\/models\/gemini-2\.5-flash-image-preview:generateContent/g,
+                "https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict"
+            );
+            modifiedHtml = modifiedHtml.replace(/\$\{GOOGLE_API_KEY\}/g, "${apiKey}");
+
+            if (values.apiKey) {
+                modifiedHtml = modifiedHtml.replace(
+                    /const\s+apiKey\s*=\s*(window\.GOOGLE_API_KEY|["'].*?["']|process\.env\..*?);?/g,
+                    `const apiKey = "${values.apiKey}";`
+                );
+                modifiedHtml = modifiedHtml.replace(
+                    /const\s+GOOGLE_API_KEY\s*=\s*["'].*?["'];?/g,
+                    `const GOOGLE_API_KEY = "${values.apiKey}"; const apiKey = "${values.apiKey}";`
+                );
+            }
 
             // Re-encode if PLR
             if (isPlrFile) {
